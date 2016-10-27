@@ -2,10 +2,8 @@
 {% block content %}
 {% if account %}
     <div class="btn-group">
-        <a class="btn btn-default" href="{% url 'PAM_APP:edit' account.id %}">
-            <span class="glyphicon glyphicon-pencil"></span></a>
-        <a class="btn btn-default" href="{% url 'PAM_APP:delete' account.id %}">
-            <span class="glyphicon glyphicon-trash"></span></a>
+        <a href="{% url 'PAM_APP:update_account' account.id %}"><button class="btn btn-default">Edit</button></a>
+        <a href="{% url 'PAM_APP:delete_account' account.id %}"><button class="btn btn-default">Delete</button></a>
     </div>
 
     <h1>{{ account.username }}</h1>
@@ -20,25 +18,13 @@
                 <td>Address</td><td>{{ account.address }}</td>
             </tr>
 
-            {% if account.DbAccount %}
+            {% if account.device_type == 'DB' %}
             <tr>
                 <td>Device Type</td><td>{{ account.device_type }}</td>
             </tr><tr>
                 <td>Database</td><td>{{ account.database }}</td>
             </tr><tr>
                 <td>Instance</td><td>{{ account.instance }}</td>
-            </tr>
-            {% endif %}
-
-            {% if account.OsAccount %}
-            <tr>
-                <td>Device Type</td><td>{{ account.device_type }}</td>
-            </tr>
-            {% endif %}
-
-            {% if account.AppAccount %}
-            <tr>
-                <td>Device Type</td><td>{{ account.device_type }}</td>
             </tr>
             {% endif %}
 
@@ -56,9 +42,10 @@
                 <td>Operational Impact</td><td>{{ account.operational_impact }}</td>
             </tr><tr>
                 <td>Overall Score</td><td>{{ account.overall_score }}</td>
+            </tr><tr>
+                <td>Users</td><td>{{ account.users }}</td>
             </tr>
         </table>
-    </div>
     {% else %}
         <p>Account could not be found</p>
     {% endif %}

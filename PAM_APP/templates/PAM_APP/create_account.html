@@ -4,12 +4,8 @@
     <form method="post">
         {% csrf_token %}
         <table class="table">
-        {{ account_form.as_table }}
-        {% if extended_form %}
-            {{ extended_form.as_table }}
-        {% endif %}
+        {{ form.as_table }}
         </table>
-
         <input type="submit" value="Submit"/>
     </form>
 {% endblock %}

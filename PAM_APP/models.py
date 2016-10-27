@@ -1,10 +1,15 @@
 from django.db import models
+from django.urls import reverse
 
 
 class AccountUser(models.Model):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=35)
     username = models.CharField(max_length=35, unique=True)
+    email = models.EmailField(max_length=75, default='user@gmail.com')
+
+    def get_absolute_url(self):
+        return reverse('PAM_APP:view_user', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
@@ -57,10 +62,13 @@ class Account(models.Model):
         default=1
     )
     overall_score = models.PositiveSmallIntegerField(blank=True, default=1)
-    users = models.ManyToManyField(AccountUser)
+    users = models.ManyToManyField(AccountUser, blank=True)
 
     def get_account_name(self):
         return self.username + '-' + self.address + '-' + self.device_type
+
+    def get_absolute_url(self):
+        return reverse('PAM_APP:view_account', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.username + '-' + self.address

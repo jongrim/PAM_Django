@@ -1,0 +1,25 @@
+{% extends 'PAM_APP/base.html' %}
+{% block content %}
+<div class="btn-group">
+    <a href="{% url 'PAM_APP:update_user' object.id %}"><button class="btn btn-default">Edit</button></a>
+    <a href="{% url 'PAM_APP:delete_user' object.id %}"><button class="btn btn-default">Delete</button></a>
+</div>
+
+<h1>{{ object.first_name }}</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Account Value</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>First Name</td><td>{{ object.first_name }}</td>
+            </tr><tr>
+                <td>Last Name</td><td>{{ object.last_name }}</td>
+            </tr><tr>
+                <td>Email</td><td>{{ object.email }}</td>
+            </tr>
+
+        </table>
+{% endblock %}

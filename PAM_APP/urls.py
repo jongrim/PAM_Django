@@ -1,20 +1,28 @@
 from django.conf.urls import url
-from PAM_APP.views import IndexView, AccountDetailView, AddAccount
-
-from . import views
+from PAM_APP.views import ListAccounts, ListUsers, AccountDetailView, UserDetailView, CreateAccount, CreateUser,\
+    UpdateAccount, UpdateUser, DeleteAccount, DeleteUser
 
 app_name = 'PAM_APP'
+# URL name patterns should follow the pattern 'verb_object'
 urlpatterns = [
     # ex: /PAM_APP/
-    url(r'^$', IndexView.as_view(), name='index'),
-    # ex: /PAM_APP/34/
-    url(r'^account/(?P<pk>[0-9]+)/detail$', AccountDetailView.as_view(), name='account_detail'),
+    url(r'^$', ListAccounts.as_view(), name='index'),
+    # ex: /PAM_APP/users
+    url(r'^users/$', ListUsers.as_view(), name='list_users'),
+    # ex: /PAM_APP/account/34/detail
+    url(r'^account/(?P<pk>[0-9]+)/detail/$', AccountDetailView.as_view(), name='view_account'),
+    # ex: /PAM_APP/user/34/detail
+    url(r'^user/(?P<pk>[0-9]+)/detail/$', UserDetailView.as_view(), name='view_user'),
     # ex: /PAM_APP/add_account/
-    url(r'^add_os_account/$', AddAccount.as_view(), name='add_account'),
-    # ex: /PAM_APP/34/edit/
-    url(r'^(?P<account_id>[0-9]+)/edit/$', views.edit, name='edit'),
-    # ex: /PAM_APP/34/delete/
-    url(r'^(?P<account_id>[0-9]+)/delete/$', views.delete, name='delete'),
-    # ex: /PAM_APP/34/remove_account
-    url(r'^(?P<account_id>[0-9]+)/remove_account/$', views.remove_account, name='remove_account'),
+    url(r'^create_account/$', CreateAccount.as_view(), name='create_account'),
+    # ex: /PAM_APP/add_user/
+    url(r'^create_user/$', CreateUser.as_view(), name='create_user'),
+    # ex: /PAM_APP/account/34/edit/
+    url(r'^account/(?P<pk>[0-9]+)/edit/$', UpdateAccount.as_view(), name='update_account'),
+    # ex: /PAM_APP/user/34/edit/
+    url(r'^user/(?P<pk>[0-9]+)/edit/$', UpdateUser.as_view(), name='update_user'),
+    # ex: /PAM_APP/account/34/delete/
+    url(r'^account/(?P<pk>[0-9]+)/delete/$', DeleteAccount.as_view(), name='delete_account'),
+    # ex: /PAM_APP/user/34/delete/
+    url(r'^user/(?P<pk>[0-9]+)/delete/$', DeleteUser.as_view(), name='delete_user'),
 ]
