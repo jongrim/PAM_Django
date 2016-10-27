@@ -9,6 +9,7 @@ from .models import Account, AccountUser
 class ListAccounts(generic.ListView):
     model = Account
     template_name = 'PAM_APP/index.html'
+    paginate_by = 3
 #     TODO figure out how to return the first x number of accounts, and do pagination
 
 

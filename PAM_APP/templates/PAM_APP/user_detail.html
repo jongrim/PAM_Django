@@ -5,8 +5,8 @@
     <a href="{% url 'PAM_APP:delete_user' object.id %}"><button class="btn btn-default">Delete</button></a>
 </div>
 
-<h1>{{ object.first_name }}</h1>
-        <table class="table table-striped">
+<h1>{{ object }}</h1>
+        <table class="table table-condensed">
             <thead>
                 <tr>
                     <th>Parameter</th>
@@ -19,6 +19,13 @@
                 <td>Last Name</td><td>{{ object.last_name }}</td>
             </tr><tr>
                 <td>Email</td><td>{{ object.email }}</td>
+            </tr><tr>
+                <td>Accounts</td>
+                <td>
+                    {% for account in object.account_set.all %}
+                    <li><a href="{% url 'PAM_APP:view_account' account.id %}">{{ account }}</a></li>
+                    {% endfor %}
+                </td>
             </tr>
 
         </table>
