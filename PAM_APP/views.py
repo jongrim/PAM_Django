@@ -10,7 +10,6 @@ class ListAccounts(generic.ListView):
     model = Account
     template_name = 'PAM_APP/index.html'
     paginate_by = 3
-#     TODO figure out how to return the first x number of accounts, and do pagination
 
 
 class CreateAccount(generic.CreateView):
@@ -40,6 +39,7 @@ class DeleteAccount(generic.DeleteView):
 class ListUsers(generic.ListView):
     model = AccountUser
     template_name = 'PAM_APP/list_users.html'
+    paginate_by = 3
 
 
 class CreateUser(generic.CreateView):

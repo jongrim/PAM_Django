@@ -7,6 +7,8 @@ app_name = 'PAM_APP'
 urlpatterns = [
     # ex: /PAM_APP/
     url(r'^$', ListAccounts.as_view(), name='index'),
+    # ex: /PAM_APP/?page=34
+    # url(r'^page(?P<page>[0-9]+)/$', ListAccounts.as_view(), name='index'),
     # ex: /PAM_APP/users
     url(r'^users/$', ListUsers.as_view(), name='list_users'),
     # ex: /PAM_APP/account/34/detail

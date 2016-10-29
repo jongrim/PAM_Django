@@ -3,6 +3,9 @@ from django.urls import reverse
 
 
 class AccountUser(models.Model):
+
+    class Meta:
+        ordering = ['last_name', 'first_name']
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=35)
     username = models.CharField(max_length=35, unique=True)
@@ -16,6 +19,9 @@ class AccountUser(models.Model):
 
 
 class Account(models.Model):
+
+    class Meta:
+        ordering = ['-last_update_time']
     high = 3
     medium = 2
     low = 1

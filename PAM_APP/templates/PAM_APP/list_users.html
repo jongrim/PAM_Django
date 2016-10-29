@@ -4,17 +4,17 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>First name</th>
                     <th>Last name</th>
+                    <th>Username</th>
                     <th>Email</th>
                 </tr>
             </thead>
             {% for user in object_list %}
             <tr>
-                <td><a href="{% url 'PAM_APP:view_user' user.pk %}">{{ user.pk }}</a></td>
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
+                <td><a href="{% url 'PAM_APP:view_user' user.pk %}">{{ user.username }}</a></td>
                 <td>{{ user.email }}</td>
             </tr>
             {% endfor %}
